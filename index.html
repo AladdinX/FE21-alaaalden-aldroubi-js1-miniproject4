@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flicker image Gallery</title>
+  <script src="js/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="icon" href="#">
+</head>
+
+<body>
+  <main>
+    <h3>Hello :) this is an image search page , using Flickr API <br>
+      Write what u want to search for and Number of how
+      many pictures u want to get </h3>
+
+    <div class="firstDiv">
+      <input type="text" class="input-search" id="input-search" placeholder="Text"
+        title="What do u want to search for" />
+      <input type="number" id="quantity" name="quantity" placeholder="number" title="How many pictures ?">
+      <button>Search</button>
+    </div>
+    <h2 id='message'></h2>
+    <div id="warper">
+
+    </div>
+  </main>
+</body>
+
+</html>
