@@ -4,28 +4,41 @@ const div = document.querySelector('#warper');
 const txtInput = document.querySelector('.input-search');
 let number = document.querySelector('#quantity');
 
+
 searchBtn.addEventListener(
-  'click', function app() {
-    if (number.value == '') {
-      alert('plz write a number')
-    } if (txtInput.value == '') {
-      alert('plz write a text')
-    }
-    const divEl = document.querySelectorAll('#warper *')
-    for (let el of divEl) { el.remove() };
+  'click', function () {
+    userAlert();
+    cleanDiv();
     setMessage("Searching for...");
     searchImage(txtInput.value, number.value);
     animateMessage.play();
+  })
+
+
+function userAlert() {
+  if (number.value == '') {
+    alert('plz write a number')
+  } if (txtInput.value == '') {
+    alert('plz write a text')
   }
-)
+}
+
+function cleanDiv() {
+  const divEl = document.querySelectorAll('#warper *')
+  for (let el of divEl) { el.remove() };
+}
+
+function setMessage(message) {
+  let h2 = document.getElementById("message");
+  h2.style.display = "block";
+  h2.innerText = message;
+}
 
 function searchImage(searchText, searchNumber) {
   const url = `https://www.flickr.com/services/rest/?api_key=${api_key}&method=flickr.photos.search&text=${searchText}&sort=relevance&safe_search=1&accuracy=1&content_type=1&format=json&nojsoncallback=1&per_page=${searchNumber}&page=6`;
   fetch(url).then(
     function (response) {
-      // console.log(response);
       if (response.status >= 200 && response.status < 300) {
-        // console.log(response.json())
         return response.json();
       }
       else {
@@ -34,7 +47,6 @@ function searchImage(searchText, searchNumber) {
     }
   ).then(
     function (data) {
-      console.log(data);
       const h2 = document.querySelector("#message");
       h2.style.display = "none";
       for (let i = 0; i < searchNumber; i++) {
@@ -118,10 +130,3 @@ let animateMessage = anime({
   loop: 10,
   color: 'rgb(250, 250, 250)'
 })
-
-function setMessage(message) {
-  let h2 = document.getElementById("message");
-  console.log(h2);
-  h2.style.display = "block";
-  h2.innerText = message;
-}
